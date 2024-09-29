@@ -38,15 +38,3 @@ stages:
         tags: |
           $(tag)
 
-- stage: start
-  displayName: start
-  jobs:
-  - job: start
-    displayName: start
-
-    steps:
-    - task: Docker@2
-      displayName: Build and push an image to container registry
-      inputs:
-        containerRegistry: 'devopsazurerepo'
-        command: 'start'
