@@ -38,3 +38,20 @@ stages:
         tags: |
           $(tag)
 
+
+- stage: RunDockerCompose
+  dependsOn: Build  # This ensures Stage 2 runs only after Stage 1
+  jobs:
+    - job: Deploy
+      pool: 
+        name: sep29  # Use the name of your self-hosted agent pool
+      steps:
+        # Checkout the latest code if needed (optional)
+        - checkout: self
+
+        # Run docker-compose up in the appropriate directory
+        - script: |
+            cd /home/azureuser/docker  # Replace with the actual path where your docker-compose.yml is located
+            docker-compose -f docker-compose.yml up -d  # Run docker-compose to start the containers
+          displayName: Run Docker Compose
+
