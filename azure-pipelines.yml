@@ -14,7 +14,7 @@ variables:
   imageRepository: 'rajatazurepracticenginx'
   containerRegistry: 'devopsazurerepo.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-  tag: '$(Build.BuildId)'
+  tag: 'latest'
 
 pool:
  name: 'sep29'
