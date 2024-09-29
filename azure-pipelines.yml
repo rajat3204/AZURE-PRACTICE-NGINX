@@ -28,6 +28,10 @@ stages:
     displayName: Build
 
     steps:
+    - script: |
+        cp /home/azureuser/.env $(Build.SourcesDirectory)/.env
+      displayName: Copy .env file from agent server
+          
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
